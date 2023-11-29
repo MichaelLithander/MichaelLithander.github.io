@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <title>Michaels Portfolio</title>
+    <meta name="description" content="My Online Portfolio Website. Michael Lithander">
+    <meta name="keywords" content="Michael Lithander, portfolio, personal portfolio, Michael, Michael portfolio, Lithander portfolio, portf., CV, intern, internship, programmer, programming, IT, jobs, student">
+    <meta name="author" content="Michael Lithander">
+ 
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    
+<!-- Landing Page Content -->
+<div id="landing-page">
+    <div id="text-animation-div">
+        <div id="text-animation" role="text" aria-label="Your Text Animation Here"></div>
+    </div>
+    <div class="button-container" style="visibility: hidden; opacity: 0;">
+        <button id="btn-website-portfolio" role="button" aria-label="Website Portfolio">Customized Coded Portfolio</button>
+        <button id="btn-standard-cv" role="button" aria-label="Standard CV">Standard CV PDF</button>
+    </div>
+</div>
+
+<div id="mode-toggle-buttons" style="display: none;">
+    <button id="btn-toggle-portfolio" aria-label="Switch to Website Portfolio">Switch to portfolio</button>
+    <button id="btn-toggle-cv" aria-label="Switch to Standard CV">Switch to CV</button>
+</div>
+
+<!-- Container for dynamically loaded content -->
+<div id="dynamic-content" aria-live="polite"></div>
+
+
+<div id="ariaLiveAnnouncer" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; width: 1px; height: 1px; margin-top: -1px; border: none; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;"></div>
+
+
+
+    <script>
+// Event listener for the 'Website Portfolio' button
+document.getElementById('btn-website-portfolio').addEventListener('click', animateTextOutAndIn);
+
+function addEventListenersForToggleButtons() {
+    const btnTogglePortfolio = document.getElementById('btn-toggle-portfolio');
+    const btnToggleCV = document.getElementById('btn-toggle-cv');
+
+    btnTogglePortfolio.addEventListener('click', loadWebsitePortfolio); 
+    btnToggleCV.addEventListener('click', loadStandardCV); 
+}
+
+
+// Event listener for the 'Website Portfolio' button
+document.getElementById('btn-website-portfolio').addEventListener('click', animateTextOutAndIn);
+
+
+window.onload = function() {
+  setTimeout(showButtons, 3000); 
+}
+
+function showButtons() {
+  const buttonContainer = document.querySelector('.button-container');
+
+  buttonContainer.style.visibility = 'visible';
+  buttonContainer.style.opacity = '1';
+  buttonContainer.style.transition = 'opacity 1s ease-in';
+}
+
+
+
+// Function for the typewriter effect that treats the input as HTML
+function typeWriterHTML(text, element, delay = 100, callback) {
+    let i = 0;
+    element.innerHTML = "";
+    function typing() {
+        if (i < text.length) {
+            element.innerHTML = text.substring(0, i+1); // Insert text as HTML
+            i++;
+            setTimeout(typing, delay);
+        } else if (callback) {
+            callback(); 
+        }
+    }
+    typing();
+}
+
+// Function for the typewriter effect for plain text
+function typeWriter(text, element, delay = 100, callback) {
+    let i = 0;
+    function typing() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i); 
+            i++;
+            setTimeout(typing, delay);
+        } else if (callback) {
+            callback(); 
+        }
+    }
+    typing();
+}
+
+window.onload = function() {
+    const textAnimationDiv = document.getElementById('text-animation');
+    const buttonContainer = document.querySelector('.button-container');
+
+    typeWriterHTML('Welcome to my Online Portfolio!<br>Please choose your desired experience. <br>(You can switch between these at any given time)', textAnimationDiv, 50, () => {
+        buttonContainer.style.visibility = 'visible';
+        buttonContainer.style.opacity = '1';
+    });
+};
+
+
+// Function to show 'Press any key to continue' message
+function showPressAnyKeyMessage() {
+    const pressKeyDiv = document.createElement('div');
+    pressKeyDiv.id = 'press-any-key';
+    pressKeyDiv.innerText = 'Press any key to continue';
+    document.body.appendChild(pressKeyDiv);
+    pressKeyDiv.style.display = 'block';
+    window.addEventListener('keydown', loadWebsitePortfolio, { once: true });
+}
+
+// Function to animate text out and in for "New Animated Text"
+function animateTextOutAndIn() {
+    const landingPage = document.getElementById('landing-page');
+
+    landingPage.style.opacity = '0';
+    landingPage.style.transition = 'opacity 1s ease-out';
+
+    setTimeout(() => {
+        landingPage.innerHTML = '';
+        const animatedText = document.createElement('div');
+        animatedText.id = 'animated-text';
+        landingPage.appendChild(animatedText);
+        landingPage.style.opacity = '1';
+
+        typeWriter('Weeeeelcome future employer (or whoever you might be), to my Online Portfolio! I have made this portfolio to demonstrate my capabilities and strenghts when it comes to the making and designing of a website. To begin, I can introduce who I am. Hi, I am Michael Lithander. I am a 16-year-old student and developer with skills in programming aswell as design, and I am currently a beginner in both of these areas.', animatedText, 80, () => {
+            setTimeout(showPressAnyKeyMessage, 500); 
+        });
+    }, 1000); 
+}
+
+
+
+// Function to load the website portfolio
+function loadWebsitePortfolio() {
+let pressAnyKeyElement = document.getElementById('press-any-key');
+
+if(pressAnyKeyElement !== null) {
+    pressAnyKeyElement.style.display = 'none';
+}
+            const websitePortfolioHTML = `
+            <body>
+    <header id="top">
+        <h1>Michael Lithander</h1>
+            <p id="title">Portf.</p>
+        <div class="ascii-art-container">
+            <pre class="ascii-art">
+                                                                                                                                                                                                        
+            .     .    .  .       .    .  .    .  .    .  .    .  .    .  .    .  .    .  .    .  .    .  .    .  .    .  .    .  .    .  .    .  .    .  .    .  .    .  .    .  .    .  .    .  .    .  . .  .
+           .    .   .  .  .;SX%: .   .      .       .       .       .       .       .       .       .       .       .       .       .       .       .       .       .       .       .       .       .            
+              .   .   ..%X88@88 88:.   .  .   .  .    .  .    .  .    .  .    .  .    .  .    .  .    .  .    .  .    .  .    .  .    . . .   .  .    .  .   . .  .   .  .    .  .    .  .    .  .    .  .  . .  
+           .    .  .;S@8@@8;X8 888           .    .    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  ::.   .   .  .   .  . ::. .      .   .   .   .   .   .   .   .   .   .    .
+             .   .;X888888S8888888%  .  .  .   . .  .    .   .   .   .   .   .   .   .   .   .   .  .    .   .  . .  .   .   .   .  :X888%.   .      .    :X888%.  . .   .   .   .   .   .   .   .   .   .    .  
+           .   . S 8 8888888X888888..       .  :;.   .     . ;t;.  .       .   ..;:        .   .  ;; .     .   .;t:.       .   .   8 S88;88 :     .    . 8 %88;88 :        . :t;. .        .   . ;;         .    
+             .  .;  888888@%@88888t   .  .  ;X@88@8S  . ..tS88@8S%8   .  .  . S.88@88 . .    . tX@88@8; .   :%X88@8X88 .     .tS@S8888%88S88  . .  .tS@S8888%88S88:..  . .;S@888S88;  . .    .%@88@88. .  .    . 
+           .   . t XX8888t  8X8888. .  . . % S888888 . .S8888888888;..  .  :Xt8  888S:.   . . 8S 88888S.. ;X888888888S;. . . X;888888888S88X     . X;888888888X88X   . .%88888888888..   . . SS88888S:.     .    
+               . ;@ 8888:   XX8888 : ..t:.;@8 88@8 8..8t8888 88@8@ 8  . :SX8888SX88@8% . :;: 8888%8%8 S%%X88888X8 888S; ;%%888S%888 8@@S@8888 :SS888S%888888X8888 8 ..8%8888 8%8 8S8t.  :;. ;@X888S88%.  .    .  
+           . .   S 8@888%;. X%8@88% @8888S8SS8@888S.:@X%88S88@X888XX ..t%88888S8888@8X 8888@X8@@8888S;.8S@888888X@8X888:8 8888888888888X@888  8 8888888888888@88@8    8SS88888@X8888; 8%@8@8XS88@88St  .       . 
+               . t8%8888  888@88X8  8 t888X@8XS8X.: 8t@88888X8%88X@t. 8X8888%888X88X8 .S @888S@88@88.. 8 t%888;:@X@8@8  8 %88888@X88t@88XX8%%:8t 88888@S88@888S888  8%88@888 8;X8@88.:S 8888888@888;      . .    
+           .   . X%SX@888888888X8:  8  8888S888X  ::8tS88888%8X8888  tX88888@%X%@8X@8S:8   88S88X88.. ;88@8888888888888.8%SX8S88;@888%8@@888  8%SS@8@8t8888X8@@888  X%X8SX8@8@@@888S: 8S@888XX888S. . . .      . 
+             .   tS%8888888X@888St .8 SS888888. . .:8 ;88@8@ 8tX8@8.  @X8@@88:8;%8888 ;8S%8X88@8%     .t.%88t%888@X88@  8% 8Xt88@888S88@X888  8%%88888;888@88@X88SS 8tt88@XX8888@8S;. 8XX8@8SX88t .        .     
+           .   . t8S88888 @8888; .::8t%88888X;.   .;8 S 888S.8S%888.; @X@8X88888%88S88 8 %88888       ..8%S%@8@888S888  8%S88X88 @@8888S@888;.8tS 8888%S88888S8888  @%%888S@8X8@8t .  8 @88@8%8X.    .  .    .  .
+             .  .SSS88888@888St. ...8tt88S8%t   . .:8;t8@X8: 8 X888@ :8S888888888@@X8  8 t88S8S      . @%%S%88888X88X8  8%X8X888SX8S888SS@X@  8%%88S88 S8%X88SS888  8%% 88@8@8888@.   8SX88@% . .  .     .       
+           .   . tX@8@X8  ;S. .   .:8%X8X@8S:.    .:8tS8X@8S8@@X88@X. 8@888@8888@8@@8;;8X8 @88%      . 8 %8SX8X88X88S@  8%@ 8@88 S88@8t8X888 .8%@8@88@ S@8@8%8S@88  8SS8888 S8888888% 8X8888t . ..    .    .  .  
+               . t8X88X8    ..   ...8%X%8@8:. .  ..:8tS88@8888888@8@. X88888@@8%88@X8  8%S8888;.    ..t@%S8X8@@8888X@8  8XX@@%88%%88@8@; .;.. 8S@88@88%%8@X8@:    . 8S@8X8@@888888t8t XX888X;: .   .   .    .    
+           . .   SX8@888    . .   ..8S@@8X8@.   . .:8%@8X8888S88@8      S8X8@X@8888@8..8t888%@ .  .  . 8 X8X8888@@%X88  8X@88X8t8@X888. . . ..8S@88S8 8 S888.     . @X88888@88@88@8...8S8888. :   .  .   .     . 
+               . t@888X8      .   ..8S888%8       .:8S8@@88@88888    .    :8X8X@8@8X8:;8t8@@88;.     .;8%8@88888X888;.  8@888@8   8.%.. .   . 8X88888tSt8tS.      . %8@8888888@%8S    8S8888;..            .     
+           .   .   X8888.   .  . . .S8S8@8         ::88S@@88 8.      ..X888@8X8@@@S8:.t8888888S. . . .  888888 888@t   .%8@88S8    .      .  .;88@888t.... .  . .  . ;88888888:;t     8888888. . .  . . .    .   
+             .      88        .     t; 8S       .   .tt 888%t;       :888@888XS@88 .. :   8t8t       . :   888SS;.   .  tt 88:        . .   . tt 8t       . .      . tt 888 tt.      :  t8 t.             .    . 
+           .    .   :     .    .  .   :;          . .   ;@;..         8 8%S8@S88.. .  .   ; . . .  . .     SX.. .  .    .  ...               .   .     .      . .  .    :;; .           .. .  .  . .  .     .    
+             .   .         . .     .  .                            .  888888S;%:    .      .          .               .  .   .      .  .  .   .          . .     .  .  .       .    .       .           .     .  
+           .   .   .    .      . .    .         .  .     .   . .     .   ::%.  .  .         .  . .  .    . .  . . .     .  .  .         .   .        . .    .  .       .  .  .   .     .  .    . .  .     .      
+                    .  .  .  .     .   .         .   .     .     .  ..   ....        .             .  .      .      . .  .   .    .  .    .    . .        .       .  .  .      .   .     .   .     .  .     .  . 
+            </pre>
+        </div>
+        <div class="Designer-container">
+            <p>Designer</p>
+        </div>
+        <iframe src='https://my.spline.design/spinningguy-e0b2730a1aa02eab6d947a8b57a9d671/' alt="Animation of a spinning 3D model of the author with a red jacket, black pants and white headset sitting cross legged in a black and red gaming chair while holding a PC in their lap. The animation starts off by transitioning the camera from being zoomed into the PC screen (to simulate the feeling of being inside of the PC at the start of the website) to zooming out to reveal the spinning animation and it's 3D model."frameborder='0' width='100%' height='100%'></iframe>
+    </header>
+
+
+<main id="maim">
+    <nav id="verticalBar" class="vertical-bar">
+        <ul>
+         <li><a href="#about-me">About Me</a></li>
+         <li><a href="#skills-knowledge">Qualities</a></li>
+         <li><a href="#my-work">Experiences</a></li>
+         <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="button-section">
+      <button class="text-button" id="myButton">Click to view introduction <br> again</button>
+    </section>
+    <section id="overlay" class="overlay" style="display:none;">
+      <p class="overlay-text">Weeeeelcome future employer (or whoever you might be), to my Online Portfolio! I have made this portfolio to demonstrate my capabilities and strenghts when it comes to the making and designing of a website. To begin, I can introduce who I am. Hi, I am Michael Lithander. I am a 16-year-old student and developer with skills in programming aswell as design, and I am currently a beginner in both of these areas.</p>
+    </section>
+
+
+    <!-- Personal Info and Map Section -->
+    <article class="profile">
+        <section id="about-me">
+            <h2>Personal Info</h2>
+            <p>👤 Michael Lithander</p>
+            <p>♂ Male | He/him</p>
+            <p>📅 7. April 2007</p>
+            <p>🏳 Norwegian</p>
+            <a href="#contact" class="button-style">Contact</a>
+            <p class="contact-info">michaellithander@gmail.com*</p>
+            <p class="contact-info"><a href="tel:+4746515168">+47 46 515 168*</a></p>
+        </section>
+        <section id="location-info">
+            <h2>Where I live</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2050.5849514057113!2d10.897911096025213!3d59.07240426579143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46441eef449b2c41%3A0x25ee694380109945!2sSpj%C3%A6reveien%2033%2C%201684%20Vester%C3%B8y!5e0!3m2!1sno!2sno!4v1700146855007!5m2!1sno!2sno" alt="A rectangular Google Map showcasing the authors location with the address Spjæreveien 33, 1684 Vesterøy placed in a rectangular white box in the top left corner of the Google Map. You can drag your position on the map around by holding down the left mouse key and moving your cursor aswell as zoom in on the map if you hold down CTRL-key and scroll your mouse wheel (This is informed when you hover over the map and try to scoll without holding down CTRL-key, prompting you with the message Hold ctrl-key down and scroll to zoom in on the map)." width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
+    </article>
+
+
+    <!-- Section with two centered articles in a row -->
+    <section class="centered-content">
+        <!-- Skills and Knowledge Section -->
+        <article class="section skills-section" id="skills-knowledge">
+            <h2>Skills and knowledge</h2>
+            <section class="skills-container">
+                <section class="skill-column">
+                    <h3>Languages</h3>
+                    <ul>
+                        <li style="display: flex; align-items: center; gap: 10px;">
+                            Norwegian
+                            <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="--value: 100"></div>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 50px;">
+                            English
+                            <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="--value: 80"></div>
+                        </li>
+                        
+                        <li style="display: flex; align-items: center; gap: 45px;">
+                            German
+                            <div class="progress-bar" role="progressbar" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100" style="--value: 18"></div>
+                        </li>
+                    </ul>
+                </section>
+                <section class="skill-column">
+                    <h3>Design Softwares</h3>
+                    <ul>
+                        <li style="display: flex; align-items: center; gap: 20px;">
+                            Paint.NET
+                            <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="--value: 85"></div>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 45px;">
+                            Blender
+                            <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="--value: 20"></div>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 13px;">
+                            Photoshop
+                            <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="--value: 40"></div>
+                        </li>
+                    </ul>
+                </section>
+                <section class="skill-column">
+                    <h3>Coding Languages</h3>
+                    <ul>
+                        <li style="display: flex; align-items: center; gap: 74px;">
+                            HTML
+                            <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="--value: 80"></div>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 95px;">
+                            CSS
+                            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="--value: 70"></div>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 18px;">
+                            JavaScript
+                            <div class="progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="--value: 10"></div>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 63px;">
+                            Python
+                            <div class="progress-bar" role="progressbar" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100" style="--value: 14"></div>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 10px;">
+                            (RBLX) Lua
+                            <div class="progress-bar" role="progressbar" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100" style="--value: 22"></div>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+        </article>
+        
+        <!-- Education Section -->
+        <article class="section education-section">
+            <h2>Education</h2>
+            <ul>
+                <h3>"Videregående opplæring"</h3>
+                    <li>• Informasjonsteknologi- og medieproduksjon <br> Glemmen Videregående skole // 2023 - ⏳</li>
+                <h3>"Grunnskole"</h3>
+                    <li>• Hvaler barne- og ungdomsskole // 2020 - 2023</li>
+                    <li>• Åttekanten skole // 2019 - 2020</li>
+                    <li>• Rekustad skole // 2013 - 2019</li>
+            </ul>
+        </article>
+        <div class="link-container">
+            <p class="link-intro-text">Check out my</p>
+            <div class="links-row">
+                <a href="https://github.com/MichaelLithander" class="text-link left-link">GitHub</a>
+                <p class="or-text">or</p>
+                <a href="https://www.linkedin.com/in/michaellithander/" class="text-link right-link">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="profile vertical-stack">
+        <h2 id="my-work" style="text-align: center; font-size: 5rem; text-decoration: underline;">My work</h2>
+      <article>
+        <h2>Image Gallery Website</h2>
+        <img src="Pictures/Work/MichaelsImageGallery.gif" alt="A GIF (if you're not already aware is essentially a video displayed as a picture, meaning you can't pause or fast forward (keep in mind GIFS also get downscaled into oblivion since it compresses the video to fit as a GIF format)) of the author showcasing his Image Gallery Website by interacting with the website. From the GIF you can see that the website contains a Header with the title Michaels Fotogalleri, aswell as a Main that contains together 6 photographs stacked 2 by 3 below eachother with the images metadata (details) written under each photograph. To the left side of the photographs there is a navigation bar with the options Dybdeskarphet, Lukkertid and Valgri letting you choose betwene each of the colums (which are divided into these categories I just mentioned). At the end you can see the author use a button at the end which takes you to the top of the website (at the Header).">
+        <p>"Midhaels Fotogalleri" was the first website I ever made. It consisted of a header that took up the whole viewport aswell as a <'h1'> tag containing the text "Michaels Fotogalleri". The "main content" of this website was (as the name suggests) the photos. These photos were positioned in a column for each respected category, these being "Dybdeskaphet, "Lukkertid" and "Valgfri". To navigate between these categories efficiently, I implemented a vertical navigation bar, using anchor links with the ID's of each section containing the column. Lastly, I added two more anchor links, one present in the header to bring you down to the main content, and one present at the end of the page to take you to the top. <br> <br> This article will have a more indepth explanation in the future, however for now, it remains "brief" (and visually kind of clunky) until I have implemented the upcoming "Dev Log" feature (the same goes for the other articles beneath). </p>
+      </article>
+      <article>
+        <h2>My Business Card</h2>
+        <img src="Pictures/Work/BusinessCard/MichaelsBusinessCard_Front.png" alt="The front side of the authors business card. The contents of this side is the authors name Michael displayed in the middle in a big rock-like styled text, a much smaller text saying Din Personlige ChatGPT displayed under the title and a background consisting of multiple 3D models such as a chair, two guitars, a small table, an alcohol bottle and two controllers (one laying on the small table, and one on the ground) with a grey background color.">
+        <p>This is the front of my business card.</p>
+          <img src="Pictures/Work/BusinessCard/MichaelBusinessCard_Back.png" alt="The back side of the authors business card. The contents of this side is a 3D model of an old-styled red/purple boxed television tiled to the right with the authors personal logo with the initials ML inside of it displayed on the left in the middle, the authors name Michael Lithander displayed staggered above and under eachother in the upper right corner slightly to the left in a squiggly-like styled text in the color blue, the authors mobile number 45515168 displayed right under the name in the same font just now in a black color, the authors eMail michael.lithander@gmail.com and address Spjæreveien 33, Vesterøy displayed above and under eachother on the right side in the middle in the color black and 5 black icons of each of the authors experienced programming languages and designing softwares HTML, CSS, Python, Roblox Lua, Blender displayed besides eachother in a row at the bottom right.">
+        <p>This is the back of my business card.</p>
+      </article>
+    </section>
+
+    <section class="conteudo" id="contact">
+        <h2 class="contact-header">Contact</h2>
+        <nav>
+            <span id="btn-me" class="active">Me</span>
+            <span id="btn-references">References</span>
+        </nav>
+        <section class="carousel-wrapper">
+            <form action="https://formsubmit.co/michaellithander@gmail.com" method="POST" class="card">
+                <input type="text" name="Name" placeholder="Full Name" required>
+                <input type="email" name="Email" placeholder="Your Email" required>
+                <textarea name="Message" placeholder="Message (Fungerer midlertidlig ikke pga. nettsiden må gjøres global.)" required></textarea>
+                <button class="submit-button">Send</button>
+            </form>
+            <form action="https://formsubmit.co/michaellithander@gmail.com" method="POST" class="card">
+                <input type="text" name="Name" placeholder="W.I.P" required>
+                <input type="email" name="Email" placeholder="W.I.P">
+                <textarea placeholder="W.I.P"></textarea>
+                <button class="submit-button">Send</button>
+            </form>
+        </section>
+    </section>
+</main>
+    <footer>
+        <p> This websites was lastly updated 21/11/23 - 15:23 GMT</p>
+             <img src="Pictures/Icons/MichaelLogo.svg" alt="A small icon of the authors logo with the initals ML. This logo has a rounded design and is also black. When hovered over with your cursor the logo also spins around clock-way." class="footer-logo-right" />
+        <a href="#top" alt="A small picture of the Up Arrow from the game Paper Mario: The Thousand-Year Door used as an icon for the button that takes you to the top of the website. This arrows design is simple with a thick form, black outline and is the color grey."></a>
+    </footer>
+            </body>`;
+        
+document.getElementById('dynamic-content').innerHTML = websitePortfolioHTML;
+
+document.getElementById('landing-page').style.display = 'none';
+
+setTimeout(showToggleButtons, 3000);
+
+setTimeout(() => {
+    addEventListenersForToggleButtons();
+    reinitializeEventListeners();
+}, 3000);
+announcePageChange("Web Portfolio page loaded");
+
+        }
+        
+
+
+
+
+
+
+        
+// Function to reinitialize event listeners and other functionalities for dynamic content
+function reinitializeEventListeners() {
+
+        const progressBars = document.querySelectorAll('[role="progressbar"]');
+
+        progressBars.forEach(bar => {
+            const value = parseInt(bar.getAttribute('aria-valuenow'), 10);
+            updateProgressBarColor(bar, value);
+        });
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'progress 2s 0.5s forwards';
+                    const value = parseInt(entry.target.getAttribute('aria-valuenow'), 10);
+                    updateProgressBarColor(entry.target, value);
+                }
+            });
+        }, {
+        threshold: 0.5
+    });
+
+    progressBars.forEach(bar => observer.observe(bar));
+
+
+            const carousel = document.querySelector('.carousel-wrapper');
+            const btnMe = document.getElementById('btn-me');
+            const btnReferences = document.getElementById('btn-references');
+            const conteudoWidth = document.querySelector('.conteudo').offsetWidth;
+        
+            let isButtonClicked = false;
+        
+            // Function to handle resizing of textarea
+            function autoResize(textarea) {
+                textarea.style.height = 'auto';
+                textarea.style.height = textarea.scrollHeight + 'px';
+            }
+        
+            // Function to switch the active state of the buttons
+            function switchActive(button) {
+                document.querySelector('nav .active').classList.remove('active');
+                button.classList.add('active');
+            }
+        
+            // Function to handle the click on "Me" button
+            btnMe.addEventListener('click', () => {
+                if (!isButtonClicked) {
+                    isButtonClicked = true;
+                    carousel.scroll({ left: 0, behavior: 'smooth' });
+                    switchActive(btnMe);
+                    setTimeout(() => {
+                        isButtonClicked = false;
+                    }, 300);
+                }
+            });
+        
+            // Function to handle the click on "References" button
+            btnReferences.addEventListener('click', () => {
+                if (!isButtonClicked) {
+                    isButtonClicked = true;
+                    carousel.scroll({ left: conteudoWidth, behavior: 'smooth' });
+                    switchActive(btnReferences);
+                    setTimeout(() => {
+                        isButtonClicked = false;
+                    }, 300);
+                }
+            });
+        
+            // Mouse wheel scroll
+            carousel.addEventListener('wheel', function (e) {
+                e.preventDefault();
+                if (!isButtonClicked) {
+                    const cardWidth = document.querySelector('.card').offsetWidth;
+                    const scrollAmount = e.deltaY;
+                    const currentPosition = carousel.scrollLeft;
+        
+                    if (scrollAmount < 0) {
+                        // Scroll left (previous card)
+                        if (currentPosition > 0) {
+                            const targetPosition = currentPosition - cardWidth;
+                            carousel.scroll({ left: targetPosition, behavior: 'smooth' });
+                            switchActive(btnMe);
+                        }
+                    } else {
+                        // Scroll right (next card)
+                        if (currentPosition < conteudoWidth) {
+                            const targetPosition = currentPosition + cardWidth;
+                            carousel.scroll({ left: targetPosition, behavior: 'smooth' });
+                            switchActive(btnReferences);
+                        }
+                    }
+                }
+            });
+        
+    // Assign the autoResize function to textareas
+    const textareas = document.querySelectorAll('textarea');
+    textareas.forEach(textarea => {
+        textarea.addEventListener('input', () => autoResize(textarea));
+        autoResize(textarea); 
+    });
+}
+
+function updateProgressBarColor(progressBar, value) {
+    let color;
+    if (value <= 33) {
+        color = 'red';
+    } else if (value <= 66) {
+        color = 'yellow';
+    } else {
+        color = 'green';
+    }
+    progressBar.style.setProperty('--primary', color);
+}
+
+
+
+document.addEventListener('scroll', function() {
+        let headerHeight = document.querySelector('header').offsetHeight;
+        const verticalBar = document.getElementById('verticalBar');
+
+        if (window.scrollY > headerHeight) {
+            verticalBar.classList.add('visible');
+        } else {
+            verticalBar.classList.remove('visible');
+        }
+    });
+
+
+
+// Window scroll event listener
+window.onscroll = function() {
+    const topButton = document.querySelector('a[href="#top"]');
+    if (topButton) {
+        const scrollPositionFromBottom = document.body.scrollHeight - window.innerHeight - window.scrollY;
+        const threshold = 50;
+
+        if (scrollPositionFromBottom <= threshold) {
+            if (!topButton.classList.contains('visible')) {
+                topButton.style.display = "block";
+                topButton.classList.add('visible');
+                topButton.classList.remove('hidden');
+                topButton.style.animation = 'jumpIn 0.5s';
+            }
+        } else {
+            if (topButton.classList.contains('visible')) {
+                topButton.classList.remove('visible');
+                topButton.classList.add('hidden');
+                topButton.style.animation = 'jumpOut 0.5s';
+                setTimeout(() => {
+                    topButton.style.display = "none";
+                }, 500);
+            }
+        }
+    } else {
+        console.error('topButton not found');
+    }
+
+
+
+document.getElementById('myButton').addEventListener('click', function() {
+        document.getElementById('overlay').style.display = 'flex';
+        document.body.classList.add('no-scroll');
+    });
+
+document.getElementById('overlay').addEventListener('click', function() {
+        this.style.display = 'none';
+        document.body.classList.remove('no-scroll');
+    });
+
+    // Prevents click inside the text from hiding the overlay
+document.querySelector('.overlay-text').addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+};
+
+
+function loadStandardCV() {
+    const standardCVHTML = `
+    <div id="cv-image-container">
+            <object id="cvPdf" type="application/pdf" data='Pictures/resume.pdf' width="100%" height="100%">
+                <p>Your browser does not support PDFs. Please download the PDF to view it: <a href="Pictures/resume.pdf">Download PDF</a>.</p>
+            </object>
+        </div>
+    `;
+    document.getElementById('dynamic-content').innerHTML = standardCVHTML;
+    document.getElementById('landing-page').style.display = 'none';
+
+   showToggleButtons();
+    setTimeout(() => {
+        addEventListenersForToggleButtons();
+        reinitializeEventListeners();
+    }, 0);
+    announcePageChange("Standard CV page loaded");
+}
+
+document.getElementById('btn-standard-cv').addEventListener('click', loadStandardCV);
+
+
+
+
+
+function showToggleButtons() {
+    document.getElementById('mode-toggle-buttons').style.display = 'block';
+}
+
+document.getElementById('btn-toggle-portfolio').addEventListener('click', function() {
+    let dynamicContentEl = document.getElementById('dynamic-content');
+    dynamicContentEl.innerHTML = '';
+    loadWebsitePortfolio(); 
+    dynamicContentEl.focus();
+});
+
+document.getElementById('btn-toggle-cv').addEventListener('click', function() {
+    let dynamicContentEl = document.getElementById('dynamic-content');
+    dynamicContentEl.innerHTML = '';
+    loadStandardCV();
+    dynamicContentEl.focus();
+});
+    </script>
+</body>
+</html>
