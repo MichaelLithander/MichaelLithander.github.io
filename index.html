@@ -112,10 +112,21 @@ window.onload = function() {
 function showPressAnyKeyMessage() {
     const pressKeyDiv = document.createElement('div');
     pressKeyDiv.id = 'press-any-key';
-    pressKeyDiv.innerText = 'Press any key to continue';
+    pressKeyDiv.innerText = 'Press any key or tap to continue';
     document.body.appendChild(pressKeyDiv);
     pressKeyDiv.style.display = 'block';
-    window.addEventListener('keydown', loadWebsitePortfolio, { once: true });
+
+    window.addEventListener('keydown', function(event) {
+        // Check if any key is pressed
+        loadWebsitePortfolio();
+        pressKeyDiv.style.display = 'none';
+    }, { once: true });
+
+    // Check if touch controls are pressed
+    window.addEventListener('touchstart', function(event) {
+        loadWebsitePortfolio();
+        pressKeyDiv.style.display = 'none';
+    }, { once: true });
 }
 
 // Function to animate text out and in for "New Animated Text"
